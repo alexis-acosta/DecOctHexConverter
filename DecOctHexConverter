@@ -1,0 +1,46 @@
+#include <iostream>
+#include <string>
+#include <iomanip>
+using namespace std;
+
+void printGrid(int num, string numStr) {
+    cout << setw(6) << numStr << "|" << setw (9) << oct << num << "|" << setw(9) << setbase(10) << num << "|" << setw(9) << hex << num << "|\n";
+    for(int i{0}; i < 37; i++) cout << "-";
+    cout << "\n";
+}
+
+void testString(string str) {
+    string numStr = str;
+    int num{0};
+    if(numStr[0] == '0' && numStr[1] == 'x') {
+        num = stoi(numStr,nullptr,16);
+        printGrid(num, numStr);
+    }
+    else if(numStr[0] == '0' && numStr[1] != 'x') {
+        num = stoi(numStr,nullptr,8);
+        printGrid(num, numStr);
+    }    
+    else if(numStr[0] > '0' && numStr[0] <= '9'){
+        num = stoi(numStr);
+        printGrid(num, numStr);
+    } 
+}
+
+int main() {
+    
+    string numStr, str2, str3;
+    int num{0};
+    
+    cin >> numStr >> str2 >> str3;
+    cout << "\n";
+    
+    
+    cout << setw(7) << "|" << setw(10) << " Base08 |" << setw(10) << " Base10 |" << setw(10) << "Base16 |" << "\n";
+    for(int i{0}; i < 37; i++) cout << "-";
+    cout << "\n";
+  
+    testString(numStr);
+    testString(str2);
+    testString(str3);
+ 
+}
